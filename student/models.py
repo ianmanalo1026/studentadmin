@@ -13,11 +13,14 @@ class Course(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=255, unique=True)
     code = models.CharField(max_length=50, unique=True)
-    description = models.TextField()
-    school_year = models.SmallIntegerField()
+    description = models.TextField(blank=True)
+    school_year = models.SmallIntegerField(blank=True)
     start_time = models.TimeField()
     room = models.CharField(max_length=50)
-    unit = models.SmallIntegerField()
+    unit = models.SmallIntegerField(blank=True)
+    prelim = models.SmallIntegerField(blank=True)
+    midterm = models.SmallIntegerField(blank=True)
+    finals = models.SmallIntegerField(blank=True)
     
     def __str__(self):
         return self.name
