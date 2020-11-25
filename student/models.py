@@ -26,7 +26,8 @@ class Subject(models.Model):
         return self.name
 
 class Profile(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    student = models.OneToOneField(User, on_delete=models.CASCADE, \
+                                   blank=True, null=True)
     course = models.OneToOneField('Course', on_delete=models.CASCADE, null=True)
     subject = models.ManyToManyField('Subject')
     
