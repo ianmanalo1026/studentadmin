@@ -2,7 +2,7 @@ from student.apps import StudentConfig
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from student.models import Profile
+from core.models import Profile
 
 
 @receiver(post_save, sender=User)

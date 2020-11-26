@@ -1,6 +1,12 @@
 {% block content%}
+<div class='container'>
 {% for profile in post %}
-{{profile.student}}
+<h1>{{profile.student}}</h1>
+{% for profile in post %}
+<h2>{{profile.subject}}</h2>
+{% endfor %}
+<h3>{{profile.course}}</h3>
 
 {% endfor %}
+</div>
 {% endblock%}
