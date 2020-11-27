@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 
 
 class Course(models.Model):
@@ -11,6 +11,9 @@ class Course(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("home")
     
     
 class Subject(models.Model):
@@ -23,6 +26,7 @@ class Subject(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
     code = models.CharField(max_length=50, unique=True)
+    course = models.OneToOneField(Course, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     school_year = models.PositiveIntegerField()
     semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES)
@@ -37,6 +41,10 @@ class Subject(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("home")
+    
 
 class Profile(models.Model):
     
@@ -55,3 +63,6 @@ class Profile(models.Model):
     
     def __str__(self):
         return str(self.student)
+    
+    def get_absolute_url(self):
+        return reverse("home")
