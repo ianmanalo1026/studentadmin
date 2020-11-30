@@ -26,7 +26,7 @@ class Subject(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
     code = models.CharField(max_length=50, unique=True)
-    course = models.OneToOneField(Course, on_delete=models.CASCADE)
+    course = models.ManyToManyField(Course)
     description = models.TextField(blank=True)
     school_year = models.PositiveIntegerField()
     semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES)
@@ -42,8 +42,10 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
     
-    def get_absolute_url(self):
-        return reverse("home")
+    def get_queryset(self):
+        queryset = super(CLASS_NAME, self).get_queryset()
+        queryset = queryset # TODO
+        return queryset
     
 
 class Profile(models.Model):
@@ -66,3 +68,4 @@ class Profile(models.Model):
     
     def get_absolute_url(self):
         return reverse("home")
+    

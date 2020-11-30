@@ -1,4 +1,5 @@
-from core.models import Subject, Course
+from abc import get_cache_token
+from core.models import Subject, Course, Profile
 from django.shortcuts import redirect, render, reverse
 from core.forms import (UserRegisterForm, 
                         CourseCreationForm, 
@@ -60,10 +61,16 @@ class SubjectListView(ListView):
     model = Subject
     ordering = ['-created_on']
     context_object_name = 'subjects'
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["course"] = Subject.objects.all()
+        return context
+     
+    
 class SubjectCreationView(LoginRequiredMixin, CreateView):
     model = Subject
-    fields = ['name', 'code', 'description', 'semester', 
+    fields = ['name', 'code', 'course', 'description', 'semester', 
               'subject_year', 'school_year','start_time', 'room', 'unit'
               ]
     
@@ -71,6 +78,17 @@ class SubjectCreationView(LoginRequiredMixin, CreateView):
 class CourseCreationView(LoginRequiredMixin, CreateView):
     model = Course
     fields = ['name', 'code', 'description']
+    
+    
+class CourseListView(ListView):
+    model = Course
+    ordering = ['-created_on']
+    context_object_name = 'course'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["subject"] = Subject.objects.filter()
+        return context
     
     
     
