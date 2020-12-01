@@ -1,4 +1,6 @@
 from abc import get_cache_token
+
+from django.db.models.query import QuerySet
 from core.models import Subject, Course, Profile
 from django.shortcuts import redirect, render, reverse
 from core.forms import (UserRegisterForm, 
@@ -8,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from core.filters import SubjectFilterForm
 from django.views.generic import (
                                   ListView,
                                   DetailView,
@@ -59,12 +62,10 @@ def logoutuser(request):
 
 class SubjectListView(ListView):
     model = Subject
-    ordering = ['-created_on']
-    context_object_name = 'subjects'
     
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["course"] = Subject.objects.all()
+        context = super(SubjectListView, self).get_context_data(**kwargs)
+        context["filter"] = SubjectFilterForm(self.request.GET, queryset=self.get_queryset())
         return context
      
     
@@ -78,6 +79,7 @@ class SubjectCreationView(LoginRequiredMixin, CreateView):
 class CourseCreationView(LoginRequiredMixin, CreateView):
     model = Course
     fields = ['name', 'code', 'description']
+    success_url = 'home'
     
     
 class CourseListView(ListView):
@@ -87,8 +89,4 @@ class CourseListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["subject"] = Subject.objects.filter()
-        return context
-    
-    
     

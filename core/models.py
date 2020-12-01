@@ -26,7 +26,7 @@ class Subject(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
     code = models.CharField(max_length=50, unique=True)
-    course = models.ManyToManyField(Course)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     school_year = models.PositiveIntegerField()
     semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES)
@@ -40,12 +40,7 @@ class Subject(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.name
-    
-    def get_queryset(self):
-        queryset = super(CLASS_NAME, self).get_queryset()
-        queryset = queryset # TODO
-        return queryset
+        return str(self.name)
     
 
 class Profile(models.Model):

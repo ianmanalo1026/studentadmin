@@ -1,6 +1,11 @@
-
+{% extends 'core/base.html' %}
+{% load bootstrap %}
 {% block content %}
-{% for subject in subjects%}
+<form method="GET">
+{{ filter.form|bootstrap}}
+<button type="submit">Search</button>
+</form>
+{% for subject in filter.qs %}
 <h2>{{subject.name}}</h2>
 {% endfor %}
 {% endblock %}
