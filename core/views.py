@@ -1,5 +1,3 @@
-from abc import get_cache_token
-
 from django.db.models.query import QuerySet
 from core.models import Subject, Course, Profile
 from django.shortcuts import redirect, render, reverse

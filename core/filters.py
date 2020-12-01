@@ -7,6 +7,5 @@ class SubjectFilterForm(django_filters.FilterSet):
     class Meta:
         model = Subject
         fields = {
-            'name': ['icontains'],
-            'code': ['icontains']
+            'code': ['icontains'],
             }

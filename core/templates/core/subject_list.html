@@ -6,6 +6,8 @@
 <button type="submit">Search</button>
 </form>
 {% for subject in filter.qs %}
-<h2>{{subject.name}}</h2>
+<h1>{{subject.name}}</h1>
+<h5>{{subject.course}}</h5>
+<h5>{{subject.code}}</h5>
 {% endfor %}
 {% endblock %}
