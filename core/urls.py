@@ -11,4 +11,5 @@ urlpatterns = [
     path('subject/', SubjectListView.as_view(), name='subject'),
     path('course/<int:pk>/', CourseListView.as_view(), name='course'),
     path('loginuser/', views.loginuser, name='loginuser'),
+    path('logoutuser/', views.logoutuser, name='logoutuser'),
 ]

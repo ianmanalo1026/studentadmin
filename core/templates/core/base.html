@@ -1,56 +1,33 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <title>Admin Page</title>
-  </head>
-  <body>
-    <nav class="navabar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand"><img src="#" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Document</title>
+</head>
+<body>
     <div class="sidebar">
-        <ul>
-            <li><a href="#"><i class="fas fa-qcode"></i>My Profile</a></li>
-            <li><a href="#"><i class="fas fa-qcode"></i>My Classes</a></li>
-            <li><a href="#"><i class="fas fa-qcode"></i>Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-qcode"></i>Subjects</a></li>
-            <li><a href="#"><i class="fas fa-qcode"></i>Group</a></li>
-            <li><a href="#"><i class="fas fa-qcode"></i>Logout</a></li>
-        </ul>
+        <center>
+            <img src="" class="profile_image" alt="">
+            {% block sidebar%}
+            {% if user.is_authenticated %}
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            {% endif %}
+            {% endblock%}
+        </center>
+        <a href=""><i class="fas fa-user-circle"></i>My Profile</a>
+        <a href=""><i class="fas fa-book"></i>Class</a>
+        <a href=""><i class="fas fa-list-alt"></i>Subject</a>
+        <a href=""><i class="fas fa-paper-plane"></i>News</a>
+        <a href=""><i class="fas fa-newspaper"></i>Announcement</a>
+        <a href="{% url 'logoutuser' %}"><i class="fas fa-eject"></i>Logout</a>
     </div>
     <div class="container">
-        {% block content %}
-        
-        {% endblock content %} 
+        {% block contentk%}
+        {% endblock%}
     </div>
-    
-
-  </body>
+</body>
 </html>

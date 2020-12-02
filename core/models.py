@@ -12,9 +12,6 @@ class Course(models.Model):
     def __str__(self):
         return self.name
     
-    def get_absolute_url(self):
-        return reverse("home")
-    
     
 class Subject(models.Model):
     
@@ -56,11 +53,10 @@ class Profile(models.Model):
     course = models.OneToOneField('Course', on_delete=models.CASCADE, null=True)
     subject = models.ManyToManyField('Subject')
     created_on = models.DateTimeField(auto_now_add=True)
+    profile_picture = models.ImageField(upload_to=None)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     
     def __str__(self):
         return str(self.student)
     
-    def get_absolute_url(self):
-        return reverse("home")
     
