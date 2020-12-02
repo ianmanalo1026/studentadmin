@@ -20,14 +20,13 @@
         </center>
         <a href=""><i class="fas fa-user-circle"></i>My Profile</a>
         <a href=""><i class="fas fa-book"></i>Class</a>
-        <a href=""><i class="fas fa-list-alt"></i>Subject</a>
+        <a href="{% url 'course' %}"><i class="fas fa-list-alt"></i>Subject</a>
         <a href=""><i class="fas fa-paper-plane"></i>News</a>
         <a href=""><i class="fas fa-newspaper"></i>Announcement</a>
         <a href="{% url 'logoutuser' %}"><i class="fas fa-eject"></i>Logout</a>
     </div>
-    <div class="container">
-        {% block contentk%}
+        {% block content %}
         {% endblock%}
-    </div>
+
 </body>
 </html>

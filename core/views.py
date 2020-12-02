@@ -72,9 +72,6 @@ class SubjectCreationView(LoginRequiredMixin, CreateView):
     fields = ['name', 'code', 'course', 'description', 'semester', 
               'subject_year', 'school_year','start_time', 'room', 'unit'
               ]
-    def save(self, *args, **kwargs):
-       message
-       super(SubjectCreationView, self).save(*args, **kwargs)
     
 class CourseCreationView(LoginRequiredMixin, CreateView):
     model = Course

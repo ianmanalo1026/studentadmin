@@ -43,3 +43,8 @@ body {
 .sidebar i{
     padding-right: 10px;
 }
+.container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

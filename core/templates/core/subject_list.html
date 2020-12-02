@@ -1,13 +1,31 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% load bootstrap %}
-{% block content %}
-<form method="GET">
-{{ filter.form|bootstrap}}
-<button type="submit">Search</button>
-</form>
-{% for subject in filter.qs %}
-<h1>{{subject.name}}</h1>
-<h5>{{subject.course}}</h5>
-<h5>{{subject.code}}</h5>
-{% endfor %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container"></div>
+        {% block content %}
+        <form method="GET">
+            {{ filter.form|bootstrap}}
+            <button type="submit">Search</button>
+        </form>
+        {% for subject in filter.qs %}
+            <h1>{{subject.name}}</h1>
+            <h5>{{subject.course}}</h5>
+            <h5>{{subject.code}}</h5>
+        {% endfor %}
+    {% endblock %}
+</div>
+</body>
+</html>
+
+
